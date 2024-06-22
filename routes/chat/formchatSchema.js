@@ -20,4 +20,13 @@ router.post("/form", async (req, res) => {
   }
 });
 
+router.get('/form', async (req, res) => {
+  try {
+    const forms = await FormchatSchema.find()?.sort({ createdAt: -1 });;
+    res.status(200).json(forms);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 module.exports = router;
