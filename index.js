@@ -5,6 +5,7 @@ const connectDB = require("./config/db");
 const home = require("./routes/home");
 const sigin = require("./routes/auth/singin")
 const sigup = require("./routes/auth/singup")
+const resume = require("./routes/resumes/resumes")
 const formchatSchema = require("./routes/chat/formchatSchema")
 
 require("dotenv").config();
@@ -21,6 +22,7 @@ app.use("/api/home", home);
 app.use("/api/singin",sigin)
 app.use("/api/singup",sigup)
 app.use("/api/FormchatSchema",formchatSchema)
+app.use("/api/user-resumes",resume)
 
 // connection
 const port = process.env.PORT || 9001;
