@@ -1,6 +1,7 @@
 // Import packages
 const express = require("express");
 const cors = require("cors");
+const bodyParser = require('body-parser');
 const connectDB = require("./config/db");
 const home = require("./routes/home");
 const sigin = require("./routes/auth/singin")
@@ -15,6 +16,9 @@ connectDB();
 const app = express();
 app.use(express.json());
 app.use(cors());
+// Increase the limit of the body-parser
+app.use(bodyParser.json({ limit: '10mb' })); // Adjust the limit as needed
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 
 // Routes
 app.use("/api/home", home);
