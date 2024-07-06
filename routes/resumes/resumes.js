@@ -48,15 +48,18 @@ router.get("/:userEmail", async (req, res) => {
   }
 });
 
-//fineOne to view
-router.get("/:resumeId", async (req, res) => {
-  const { resumeId } = req.params;
-  console.log(resumeId);
+// GET a resume by ID
+router.get('/getById/:id', async (req, res) => {
+  const { id } = req.params;
+
   try {
-    const resumes = await Resume.findOne({ resumeId });
-    res.status(200).json(resumes);
-  } catch (e) {
-    res.status(400).json({ message: e.message });
+    const resume = await Resume.findById(id);
+    if (!resume) {
+      return res.status(404).json({ message: 'Resume not found' });
+    }
+    res.status(200).json(resume);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 });
 
