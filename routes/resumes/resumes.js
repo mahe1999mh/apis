@@ -63,4 +63,25 @@ router.get('/getById/:id', async (req, res) => {
   }
 });
 
+// DELETE a resume by ID
+router.delete("/:resumeId", async (req, res) => {
+  const { resumeId } = req.params;
+  
+  try {
+    if (!mongoose.Types.ObjectId.isValid(resumeId)) {
+      return res.status(400).json({ message: "Invalid resumeId format" });
+    }
+
+    const deletedResume = await Resume.findByIdAndDelete(resumeId);
+
+    if (!deletedResume) {
+      return res.status(404).json({ message: "Resume not found" });
+    }
+
+    res.status(200).json({ message: "Resume deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 module.exports = router;
