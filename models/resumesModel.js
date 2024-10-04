@@ -1,23 +1,32 @@
 const mongoose = require("mongoose");
 
 // Main schema
-const resumeSchema = new  mongoose.Schema({
+const resumeSchema = new mongoose.Schema({
   resumeId: { type: String, required: true },
   title: { type: String, required: true },
   userEmail: { type: String, required: true },
   userName: { type: String, required: true },
   // Personal Detail
-  firstName: { type: String },
-  lastName: { type: String },
-  jobTitle: { type: String },
-  address: { type: String },
-  phone: { type: String },
-  email: { type: String },
-  themeColor: { type: String },
-  summary: { type: String },
+  personal: {
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
+    jobTitle: { type: String },
+    address: { type: String },
+    phone: { type: String, match: /^[0-9]{10}$/ },
+    email: { type: String, match: /.+\@.+\..+/ },
+    themeColor: {
+      type: String,
+      default: "#000000",
+      match: /^#[0-9A-Fa-f]{6}$/,
+    },
+    summary: { type: String },
+    isExperience: { type: Boolean, default: false },
+    github: { type: String },
+    linkedin: { type: String },
+  },
   experience: [
     {
-      id: { type: Number },
+      id: { type: mongoose.Schema.Types.ObjectId },
       title: { type: String },
       companyName: { type: String },
       city: { type: String },
@@ -30,7 +39,7 @@ const resumeSchema = new  mongoose.Schema({
   ],
   education: [
     {
-      id: { type: Number },
+      id: { type: mongoose.Schema.Types.ObjectId },
       universityName: { type: String },
       startDate: { type: String },
       endDate: { type: String },
@@ -41,9 +50,18 @@ const resumeSchema = new  mongoose.Schema({
   ],
   skills: [
     {
-      id: { type: Number },
+      id: { type: mongoose.Schema.Types.ObjectId },
       name: { type: String },
       rating: { type: Number },
+    },
+  ],
+  projects: [
+    {
+      id: { type: mongoose.Schema.Types.ObjectId },
+      title: { type: String },
+      summary: { type: String },
+      startDate: { type: String },
+      endDate: { type: String, default: "" },
     },
   ],
 });
