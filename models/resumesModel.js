@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 
 // Main schema
 const resumeSchema = new mongoose.Schema({
-  resumeId: { type: String },
-  title: { type: String },
-  userEmail: { type: String },
-  userName: { type: String },
+  resumeId: { type: String, required: true },
+  title: { type: String, required: true },
+  userEmail: { type: String, required: true },
+  userName: { type: String, required: true },
   // Personal Detail
   personal: {
     firstName: { type: String },
@@ -24,9 +24,18 @@ const resumeSchema = new mongoose.Schema({
     github: { type: String },
     linkedin: { type: String },
   },
+  projects: [
+    {
+      id: { type: mongoose.Schema.Types.ObjectId },
+      title: { type: String },
+      summary: { type: String },
+      startDate: { type: String },
+      endDate: { type: String, default: "" },
+    },
+  ],
   experience: [
     {
-      id: "",
+      id: { type: Number },
       title: { type: String },
       companyName: { type: String },
       city: { type: String },
@@ -39,7 +48,7 @@ const resumeSchema = new mongoose.Schema({
   ],
   education: [
     {
-      id: "",
+      id: { type: Number },
       universityName: { type: String },
       startDate: { type: String },
       endDate: { type: String },
@@ -50,18 +59,9 @@ const resumeSchema = new mongoose.Schema({
   ],
   skills: [
     {
-      id: "",
+      id: { type: Number },
       name: { type: String },
       rating: { type: Number },
-    },
-  ],
-  projects: [
-    {
-      id: "",
-      title: { type: String },
-      summary: { type: String },
-      startDate: { type: String },
-      endDate: { type: String, default: "" },
     },
   ],
 });
