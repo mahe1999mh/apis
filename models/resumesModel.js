@@ -26,7 +26,7 @@ const resumeSchema = new mongoose.Schema({
   },
   experience: [
     {
-      id: { type: mongoose.Schema.Types.ObjectId },
+      id: "",
       title: { type: String },
       companyName: { type: String },
       city: { type: String },
@@ -39,7 +39,7 @@ const resumeSchema = new mongoose.Schema({
   ],
   education: [
     {
-      id: { type: mongoose.Schema.Types.ObjectId },
+      id: "",
       universityName: { type: String },
       startDate: { type: String },
       endDate: { type: String },
@@ -50,14 +50,14 @@ const resumeSchema = new mongoose.Schema({
   ],
   skills: [
     {
-      id: { type: mongoose.Schema.Types.ObjectId },
+      id: "",
       name: { type: String },
       rating: { type: Number },
     },
   ],
   projects: [
     {
-      id: { type: mongoose.Schema.Types.ObjectId },
+      id: "",
       title: { type: String },
       summary: { type: String },
       startDate: { type: String },
