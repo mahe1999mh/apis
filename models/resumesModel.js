@@ -2,14 +2,14 @@ const mongoose = require("mongoose");
 
 // Main schema
 const resumeSchema = new mongoose.Schema({
-  resumeId: { type: String, required: true },
-  title: { type: String, required: true },
-  userEmail: { type: String, required: true },
-  userName: { type: String, required: true },
+  resumeId: { type: String },
+  title: { type: String },
+  userEmail: { type: String },
+  userName: { type: String },
   // Personal Detail
   personal: {
-    firstName: { type: String, required: true },
-    lastName: { type: String, required: true },
+    firstName: { type: String },
+    lastName: { type: String },
     jobTitle: { type: String },
     address: { type: String },
     phone: { type: String, match: /^[0-9]{10}$/ },
