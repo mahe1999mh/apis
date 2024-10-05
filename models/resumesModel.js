@@ -6,6 +6,7 @@ const resumeSchema = new mongoose.Schema({
   title: { type: String, required: true },
   userEmail: { type: String, required: true },
   userName: { type: String, required: true },
+  summary: { type: String },
   // Personal Detail
   personal: {
     firstName: { type: String },
@@ -19,7 +20,6 @@ const resumeSchema = new mongoose.Schema({
       default: "#000000",
       match: /^#[0-9A-Fa-f]{6}$/,
     },
-    summary: { type: String },
     isExperience: { type: Boolean, default: false },
     github: { type: String },
     linkedin: { type: String },
