@@ -57,13 +57,11 @@ const resumeSchema = new mongoose.Schema({
       description: { type: String },
     },
   ],
-  skills: [
-    {
-      id: { type: Number },
-      name: { type: String },
-      rating: { type: Number },
-    },
-  ],
+  skills:{
+    technicalSkills:[{type: String}],
+    softSkills:[{type: String}]
+  }
+
 });
 
 const Resume = mongoose.model("Resume", resumeSchema);
