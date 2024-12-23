@@ -55,6 +55,7 @@ const resumeSchema = new mongoose.Schema({
       degree: { type: String },
       major: { type: String },
       description: { type: String },
+      cgpa: { type: String },
     },
   ],
   skills:{
